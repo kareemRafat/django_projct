@@ -14,6 +14,8 @@
             <p>{{ user.email }}</p>
             <p>{{ user.address }}</p>
             <h4>{{ user.tall }}</h4>
+            <a href="{% url "about:show" id=user.id %}"> show user </a>
+            <hr>
         </article>
         <img src="{{ user.profile.url }}" alt="">
         <hr>

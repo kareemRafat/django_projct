@@ -16,3 +16,8 @@ def index(request) :
         'email' : User.objects.count() ,
         'test' : '<p>kareeeeeem</p>'
     })
+
+def show(request , id):
+    return render(request , 'about/show.html' , {
+        'user' : User.objects.get(id = id)
+    })
