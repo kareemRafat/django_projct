@@ -6,7 +6,7 @@ from django.db.models import Q
 
 # Create your views here.
 def index(request) :
-    return render(request , 'about/index.html' , {
+    return render(request , 'index.html' , {
         'users' : User
                     .objects
                     # .filter(Q(address = 'mansoura') | Q(email = 'kareem@gmail.com'))
@@ -18,6 +18,6 @@ def index(request) :
     })
 
 def show(request , id):
-    return render(request , 'about/show.html' , {
+    return render(request , 'show.html' , {
         'user' : User.objects.get(id = id)
     })
