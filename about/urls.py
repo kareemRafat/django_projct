@@ -6,5 +6,8 @@ app_name = 'about'
 
 urlpatterns = [
    path('' , views.index , name = 'index'),
-   path('show/<str:id>' , views.show , name = 'show')
+   path('show/<int:id>' , views.show , name = 'show')
 ]
+
+# <int:id>  Path converters
+# https://docs.djangoproject.com/en/5.0/topics/http/urls/#path-converters
