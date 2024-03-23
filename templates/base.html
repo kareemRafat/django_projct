@@ -4,23 +4,28 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-        {% block title %}
-            Django app
-        {% endblock  %}
-    </title>
+    <title>{% block title %} Django app {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+    {% load bootstrap5 %}
+    {% bootstrap_css %} 
+    {% bootstrap_javascript %}
   </head>
 
   <body>
-    <nav style="display: flex; justify-content: space-between">
-      <div>logo</div>
-      <ul>
-        <li>
-          <a href="{% url 'about:index' %}">About</a>
-        </li>
-      </ul>
-      <div>kareem</div>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-light mb-5 shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'about:index' %}">About</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </nav>
 
     {% for name in names %}
