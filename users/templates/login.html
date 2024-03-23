@@ -3,7 +3,7 @@
 {% extends "base.html" %}
 {% load bootstrap5 %}
 {% block title %}
-    Register new user
+   Login user
 {% endblock title %}
 
 
@@ -11,12 +11,12 @@
 <div class="container">
     <div class="row">
         <div class="col-12">
-            <h1>Register page</h1>
+            <h1>Login page</h1>
 
             <form method="post" action="">
                 {% csrf_token %}
                 {% bootstrap_form form %}
-                {% bootstrap_button button_type="submit" content="OK" %}
+                {% bootstrap_button button_type="submit" content="login" %}
             </form>
         </div>
     </div>
