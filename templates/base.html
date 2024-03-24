@@ -7,6 +7,12 @@
     <title>{% block title %} Django app {% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}" />
     {% load bootstrap5 %} {% bootstrap_css %} {% bootstrap_javascript %}
+    <style>
+      form button {
+        outline : none ;
+        border : none ;
+      }
+    </style>
   </head>
 
   <body>
@@ -28,12 +34,21 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:register' %}">Register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="{% url 'users:login' %}">Login</a>
-            </li>
+            {% if request.user.is_authenticated  %}
+              <li class="nav-item">
+                <form method="post" action="{% url "users:logout" %}">
+                  {% csrf_token %}
+                  <button class="nav-link" href="{% url 'users:logout' %}">logout</button>
+                </form>
+              </li>
+            {% else %}
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'users:login' %}">Login</a>
+              </li>
+            {% endif %}
           </ul>
         </div>
       </div>

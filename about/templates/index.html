@@ -5,26 +5,23 @@
 
 
     {% block content %}
-    <h1>index page</h1>
-    <!-- <h2>{{ name|capfirst|slice:2 }}</h2> -->
-    <h2>{{ email }}</h2>
-
+    
     {% load static %}
     {% for user in users %}
-        <article>
-            <h3>{{ user.username }}</h3>
-            <p>{{ user.email }}</p>
-            <p>{{ user.address }}</p>
-            <h4>{{ user.tall }}</h4>
-            <a href="{% url "about:show" id=user.id %}"> show user </a>
+       <div class="container">
+            <h1>Users</h1>
+            <article>
+                <h3>{{ user.username }}</h3>
+                <p>{{ user.email }}</p>
+                <p>{{ user.address }}</p>
+                <h4>{{ user.tall }}</h4>
+                <a  href="{% url "about:show" id=user.id %}"> show user </a>
+                <hr>
+            </article>
+            <img style="width:400px" src="{{ user.profile.url }}" alt="">
             <hr>
-        </article>
-        <img src="{{ user.profile.url }}" alt="">
-        <hr>
+       </div>
     {% endfor %}
-
-
-    <a href="/about">ddd</a>
     {% endblock content %}
 </body>
 </html>

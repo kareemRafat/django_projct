@@ -16,6 +16,10 @@
             <form method="post" action="">
                 {% csrf_token %}
                 {% bootstrap_form form %}
+                {% comment %} check if there is next in url params {% endcomment %}
+                {% if 'next' in request.GET %}
+                    <input type="hidden" value="{{ request.GET.next }}" name="next">
+                {% endif %}
                 {% bootstrap_button button_type="submit" content="login" %}
             </form>
         </div>
