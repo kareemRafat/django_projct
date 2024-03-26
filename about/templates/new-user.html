@@ -1,0 +1,29 @@
+
+
+{% extends "base.html" %}
+
+
+{% block title %}
+    new user
+{% endblock title %} 
+
+
+{% block content %}
+
+{% load static %}
+{% load bootstrap5 %}
+    
+    <div class="container mb-5">
+        <h1 class="mb-5">new post</h1>
+        <form action="" method='post' enctype="multipart/form-data">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% bootstrap_button button_type="submit" content="add user" %}
+        </form>
+    </div>
+
+
+
+{% endblock content %}
+</body>
+</html>

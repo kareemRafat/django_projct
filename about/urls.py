@@ -6,7 +6,8 @@ app_name = 'about'
 
 urlpatterns = [
    path('' , views.index , name = 'index'),
-   path('show/<int:id>' , views.show , name = 'show')
+   path('show/<int:id>' , views.show , name = 'show'),
+   path('new-user/' , views.new_user , name = 'new-user')
 ]
 
 # <int:id>  Path converters

@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.http import HttpResponse
 from .models import User
+from . import forms
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 
@@ -10,11 +11,11 @@ from django.contrib.auth.decorators import login_required
 def index(request) :
     return render(request , 'index.html' , {
         'users' : User
-                    .objects
+                    .objects.all(),
                     # .filter(Q(address = 'mansoura') | Q(email = 'kareem@gmail.com'))
-                    .filter(username__contains = 'a')
-                    .filter(tall__range = (10,35))
-                    .order_by('username') , 
+                    # .filter(username__contains = 'a')
+                    # .filter(tall__range = (10,35))
+                    # .order_by('username') , 
         'email' : User.objects.count() ,
         'test' : '<p>kareeeeeem</p>'
     })
@@ -24,3 +25,13 @@ def show(request , id):
     return render(request , 'show.html' , {
         'user' : User.objects.get(id = id)
     })
+
+
+def new_user(request):
+    if request.method == "POST":
+        form = forms.NewUser(request.POST , request.FILES)
+        form.save()
+        return redirect(to = 'about:index')
+    else :
+        form = forms.NewUser()
+        return render(request , 'new-user.html' , {'form' : form})
