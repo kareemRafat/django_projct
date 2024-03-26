@@ -30,8 +30,11 @@ def show(request , id):
 def new_user(request):
     if request.method == "POST":
         form = forms.NewUser(request.POST , request.FILES)
-        form.save()
-        return redirect(to = 'about:index')
+        if form.is_valid() :
+            form.save()
+            return redirect(to = 'about:index')
+        else:
+            return render(request , 'new-user.html' , {'form' : form})
     else :
         form = forms.NewUser()
         return render(request , 'new-user.html' , {'form' : form})
