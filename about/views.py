@@ -28,6 +28,7 @@ def show(request , id):
     })
 
 
+@login_required(login_url='users:login')
 def new_user(request):
     if request.method == "POST":
         form = forms.NewUser(request.POST , request.FILES)
