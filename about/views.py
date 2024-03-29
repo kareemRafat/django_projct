@@ -1,4 +1,4 @@
-from django.shortcuts import render , redirect
+from django.shortcuts import get_object_or_404, render , redirect
 from django.http import HttpResponse
 from .models import User
 from . import forms
@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 def index(request) :
     return render(request , 'index.html' , {
         'users' : User
-                    .objects.all(),
+                    .objects.all()[0:2], # get from 0 to 2 elements
                     # .filter(Q(address = 'mansoura') | Q(email = 'kareem@gmail.com'))
                     # .filter(username__contains = 'a')
                     # .filter(tall__range = (10,35))
@@ -23,7 +23,8 @@ def index(request) :
 @login_required(login_url='users:login')
 def show(request , id):
     return render(request , 'show.html' , {
-        'user' : User.objects.get(id = id)
+        # 'user' : User.objects.get(id = id)
+        'user' : get_object_or_404(User, id = id)
     })
 
 
